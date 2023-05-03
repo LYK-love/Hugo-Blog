@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bc42631-eb8a-46cb-927f-b6827bad4d36" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/baseof.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/archive.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/categories.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/Arm_Training.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/Barbell-Row copy.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/Barbell-Row.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/Dead-Lift.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/Hexo.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/L2-Asymptotics.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/OS-Concurrency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/Shell-Script.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/first.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/posts/second.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/tags.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/_default/baseof.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/_default/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/_default/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/partials/extended_footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/partials/extended_head.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/partials/mathjax.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/partials/toc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/shortcodes/archive.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/shortcodes/categories.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/shortcodes/tags.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/local-search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/my_fastsearch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +68,7 @@
       <updated>1682984414110</updated>
       <workItem from="1682984415654" duration="4196000" />
       <workItem from="1682991408750" duration="11848000" />
-      <workItem from="1683003950037" duration="40317000" />
+      <workItem from="1683003950037" duration="40410000" />
     </task>
     <servers />
   </component>
