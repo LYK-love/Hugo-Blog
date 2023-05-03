@@ -1,0 +1,140 @@
+<!--Fast Search Component from: https://ttys3.dev/post/hugo-fast-search/-->
+<a id="search-btn" style="display: inline-block;" href="javascript:void(0);">
+  <span class="icon-search">Search</span>
+</a>
+<!--<script src="/js/my_fastsearch.js"></script>-->
+
+<!--&lt;!&ndash;这个搜索框目前已经没用了, 因为点击搜索按钮后会直接跳转到search page, 而不是显示搜索框.&ndash;&gt;-->
+<!--<div id="fastSearch">-->
+<!--  <input id="searchInput" tabindex="0">-->
+<!--  <ul id="searchResults">-->
+<!--  </ul>-->
+<!--</div>-->
+<!--<script src="/js/fuse.min.js"></script> &lt;!&ndash; download and copy over fuse.min.js file from fusejs.io &ndash;&gt;-->
+<!--<script src="/js/fastsearch.js"></script>-->
+
+<script>
+  // 相比https://ttys3.dev/post/hugo-fast-search/, 我修改了很多部分, 目前的逻辑很简单:
+  // 监听页面事件:
+  //如果点击了search-btn或者键盘输入了`Alt` + `\n`, 则会跳转到search page.
+  //如果键盘输入了`Esc`, 则会跳转到homepage
+  var search_page_relative_url = "/search"
+  // ==========================================
+  // The main keyboard event listener running the show
+  //
+  document.addEventListener('keydown', function(event) {
+
+    // `Alt` + `/` to show search.
+    if (event.altKey && event.which === 191) {
+      // Load json search index if first time invoking search
+      // Means we don't load json unless searches are going to happen; keep user payload small unless needed
+      navToSearchPage(event)
+    }
+
+    // Allow ESC (27) to re-navigate to home page
+    if (event.keyCode == 27) {
+      navToHomePage()
+    }
+  });
+
+
+  document.querySelector("#search-btn").onclick = function(e) {
+    e.stopPropagation();
+    navToSearchPage()
+  }
+
+
+  function navToHomePage() {
+    window.location.href = "/"
+  }
+
+  function navToSearchPage() {
+    window.location.href = search_page_relative_url
+    // document.getElementById("fastSearch").style.visibility = "visible" // show search box
+    // document.getElementById("searchInput").focus() // put focus in input box so you can just start typing
+    // searchVisible = true
+  }
+</script>
+
+
+<!-- For back2top -->
+<div class="footer-box">
+  <footer class="footer">
+    <div class="copyright">
+      &copy;
+      {{ with .Site.Params.since }}
+      <span itemprop="copyrightYear">{{.}} - {{ now.Year }}</span>
+      {{ end }}
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      {{ if .Site.Params.author }}
+      <span class="author" itemprop="copyrightHolder"><a href="{{ .Site.BaseURL }}">{{ .Site.Params.author  }}</a> |
+      </span>
+      {{ end }}
+      {{ with .Site.Params.beian }}
+      <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">{{ . }} </a> |
+      {{ end }}
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+              href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+  </footer>
+  <!-- 设置滚动条和进度比例 -->
+  <div class="back-to-top" id="back_to_top">
+    <!-- 箭头-->
+    <!-- https://www.toptal.com/designers/htmlarrows/-->
+    <!-- 箭头 <span>&#8593;</span> -->
+    <span><i class="fas fa-arrow-up"></i></span> <!-- 需要FontAwesome支持，参见文末-->
+    <!-- 进度比例 -->
+    <span class="scrollpercent">
+            <span id="back_to_top_text">0</span>%
+         </span>
+  </div>
+</div>
+<script>
+  let sideBarOpen = 'sidebar-open';
+  let body = document.body;
+  let back2Top = document.querySelector('#back_to_top'),
+          back2TopText = document.querySelector('#back_to_top_text'),
+          drawerBox = document.querySelector('#drawer_box'),
+          rightSideBar = document.querySelector('.sidebar'),
+          viewport = document.querySelector('body');
+
+  function scrollAnimation(currentY, targetY) {
+
+    let needScrollTop = targetY - currentY
+    let _currentY = currentY
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10)
+      _currentY += dist
+      window.scrollTo(_currentY, currentY)
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY)
+      } else {
+        window.scrollTo(_currentY, targetY)
+      }
+    }, 1)
+  }
+
+  back2Top.addEventListener("click", function (e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+
+  window.addEventListener('scroll', function (e) {
+    let percent = document.scrollingElement.scrollTop / (document.scrollingElement.scrollHeight - document.scrollingElement.clientHeight) * 100;
+    if (percent > 1 && !back2Top.classList.contains('back-top-active')) {
+      back2Top.classList.add('back-top-active');
+    }
+    if (percent == 0) {
+      back2Top.classList.remove('back-top-active');
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
+  let hasCacu = false;
+  window.onresize = function () {
+    calcuHeight();
+  }
+</script>

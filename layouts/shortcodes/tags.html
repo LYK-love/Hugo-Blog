@@ -1,0 +1,8 @@
+{{ $tag_num := (len .Site.Taxonomies.tags) }}
+{{ $tag_num }}
+tags in total
+
+{{ range .Site.Taxonomies.tags.ByCount }}
+* [{{ .Page.Title }} ({{ .Count }})]({{.Page.Permalink}})
+{{ end }}
+

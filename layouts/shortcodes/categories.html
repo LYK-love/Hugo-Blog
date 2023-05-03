@@ -1,0 +1,8 @@
+{{ $category_num := (len .Site.Taxonomies.categories) }}
+{{ $category_num }}
+categories in total
+
+{{ range .Site.Taxonomies.categories }}
+* [{{ .Page.Title }} ({{ .Count }})]({{.Page.Permalink}})
+{{ end }}
+

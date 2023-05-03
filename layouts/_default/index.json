@@ -1,0 +1,6 @@
+{{- $.Scratch.Set "index" slice -}}
+{{ $posts_num := (len (where .Site.RegularPages "Type" "posts")) }}
+{{ range where .Site.RegularPages "Type" "posts" }}
+{{- $.Scratch.Add "index" (dict "posts_num" $posts_num "title" .Title "tags" .Params.tags "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

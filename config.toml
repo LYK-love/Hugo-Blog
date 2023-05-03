@@ -1,0 +1,166 @@
+baseurl = "/"
+languageCode = "en-us"
+# title = 'LYK-love'
+# Add it only if you keep the theme in the `themes` directory.
+# Remove it if you use the theme as a remote Hugo Module.
+# theme = "Hugo-blog-awesome"
+# theme = "LoveIt"
+theme = "terminal"
+
+paginate = 5
+
+#What's this??
+enableEmoji = true
+[markup]
+  [goldmark]
+    [renderer]
+      unsafe = true
+
+[params]
+  # dir name of your main content (default is `content/posts`).
+  # the list of set content will show up on your index page (baseurl).
+  contentTypeName = "posts" #    如果找不到, 会显示不了read other posts
+
+  # ["orange", "blue", "red", "green", "pink"]
+  themeColor = "green"
+
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 4
+
+  # show selector to switch language
+  showLanguageSelector = false
+
+  # set theme to full screen width
+  fullWidthTheme = false
+
+  # center theme with default width
+  centerTheme = true
+
+  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
+  # then the file will be used as a cover automatically.
+  # With this option you don't have to put the `cover` param in a front-matter.
+  autoCover = true
+
+  # set post to show the last updated
+  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
+  showLastUpdated = false
+
+  # set a custom favicon (default is a `themeColor` square)
+  favicon = "/images/favicon.ico"
+
+  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
+  # updatedDatePrefix = "Updated"
+
+  # set all headings to their default size (depending on browser settings)
+  # oneHeadingSize = true # default
+
+  # whether to show a page's estimated reading time
+  # readingTime = false # default
+
+  # whether to show a table of contents
+  # can be overridden in a page's front-matter
+  Toc = true # default
+
+  # set title for the table of contents
+  # can be overridden in a page's front-matter
+  TocTitle = "Contents" # default
+
+[taxonomies]
+  # key-value pairs. the value is the url. So if we set  category = 'categories1', then the taxonomy page of category is: https://mywebsite.com/categories1
+  category = 'categories'
+  tag = 'tags'
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+#[frontmatter]
+#  date = [":filename", ":default", ":fileModTime"]
+#
+#[permalinks]
+#  post = "/blog/:year/:month/:day/:slug/"
+
+disablePathToLower = true
+
+# [params.twitter]
+#   # set Twitter handles for Twitter cards
+#   # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
+#   # do not include @
+#   creator = ""
+#   site = ""
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "LYK-love"
+    subtitle = "A site by lyk"
+    owner = "LYK-love"
+    keywords = ""
+    # copyright = "LYK-love" # 页面最底下的名字
+    menuMore = "Show more"
+    # readMore = "Read more"
+    readMore = ""
+    readOtherPosts = "Read other posts"
+    newerPosts = "Newer posts"
+    olderPosts = "Older posts"
+    missingContentMessage = "Page not found..."
+    missingBackButtonLabel = "Back to home page"
+    minuteReadingTime = "min read"
+    words = "words"
+
+    [languages.en.params.logo]
+      logoText = "LYK-love"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        # (string) Required when two or more menu entries have the same name,
+        # or when localizing the name using translation tables.
+        # Must start with a letter, followed by letters, digits, or underscores.
+        identifier = "about"
+
+        # (string) The text to display when rendering the menu entry.
+        name = "About"
+        url = "/about"
+
+        # (int) A non-zero integer indicating the entry’s position relative the root of the menu, or to its parent for a child entry.
+        # Lighter entries float to the top, while heavier entries sink to the bottom.
+        weight = 1
+      [[languages.en.menu.main]]
+        identifier = "archive"
+        name = "Archive"
+        url = "/archive"
+        weight = 2
+      [[languages.en.menu.main]]
+        identifier = "tags"
+        name = "Tags"
+        url = "/tags"
+        weight = 3
+    [[languages.en.menu.main]]
+      identifier = "categories22"
+      name = "Categories"
+      url = "/categories"
+      weight = 5
+
+## 我决定把search button放在网页右上角, 而不是作为menu item
+#      [[languages.en.menu.main]]
+#        identifier = "search"
+#        name = "Search"
+#        url = "/search"
+#        weight = 9
+      [[languages.en.menu.main]]
+        identifier = "research"
+        name = "Research"
+        url = "/research"
+        weight = 6
+      [[languages.en.menu.main]]
+        identifier = "Code"
+        name = "Code"
+        url = "/code"
+        weight = 7
+# [module]
+#   # In case you would like to make changes to the theme and keep it locally in you repository,
+#   # uncomment the line below (and correct the local path if necessary).
+#   # --
+#   # replacements = "github.com/panr/hugo-theme-terminal -> themes/terminal"
+# [[module.imports]]
+#   path = 'github.com/panr/hugo-theme-terminal'
