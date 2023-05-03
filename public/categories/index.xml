@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on LYK-love</title>
+    <link>https://lyk-love.cn/Hugo-Blog/categories/</link>
+    <description>Recent content in Categories on LYK-love</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 May 2023 02:22:21 +0800</lastBuildDate><atom:link href="https://lyk-love.cn/Hugo-Blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>body</title>
+      <link>https://lyk-love.cn/Hugo-Blog/categories/body/</link>
+      <pubDate>Tue, 02 May 2023 02:22:21 +0800</pubDate>
+      
+      <guid>https://lyk-love.cn/Hugo-Blog/categories/body/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Essay</title>
+      <link>https://lyk-love.cn/Hugo-Blog/categories/essay/</link>
+      <pubDate>Mon, 17 Apr 2023 20:19:05 +0000</pubDate>
+      
+      <guid>https://lyk-love.cn/Hugo-Blog/categories/essay/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Algorithm</title>
+      <link>https://lyk-love.cn/Hugo-Blog/categories/algorithm/</link>
+      <pubDate>Thu, 23 Aug 2001 08:54:12 +0000</pubDate>
+      
+      <guid>https://lyk-love.cn/Hugo-Blog/categories/algorithm/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Shell Script Searching Path :: LYK-love</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Outline:
+Shell Script Searching Path Append path to PATH Bad Practices 哈哈 我是陆昱宽
+他是加兰
+Shell Script Searching Path Shell will find and execute command. The searching sequence of command name is:
+以相对/绝对路径执行指令，例如/bin/ls 或./ls 由 alias 找到该指令来执行 由 bash 内置的( builtin)指令来执行. 通过 PATH 这个变量的顺序搜寻到的第一个指令来执行. 在某一步骤找到command name后就会停止查找, 并且尝试执行.
+因此, 如果一个command name不是一个可执行的路径, 也不是一个alias, 又不是一个builtin( 例如alias), 则shell会在搜环境变量$PATH中搜索该command name, 如果找到, 就执行; 找不到, 则报错&amp;quot;command not found&amp;quot;.
+由于PATH 是个环境变量, 因此它在任意的子session中都有效. Command not found == not found in PATH." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://lyk-love.cn/Hugo-Blog/posts/shell-script-searching-path/" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://lyk-love.cn/Hugo-Blog/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://lyk-love.cn/images/favicon.ico">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Shell Script Searching Path">
+<meta property="og:description" content="Outline:
+Shell Script Searching Path Append path to PATH Bad Practices 哈哈 我是陆昱宽
+他是加兰
+Shell Script Searching Path Shell will find and execute command. The searching sequence of command name is:
+以相对/绝对路径执行指令，例如/bin/ls 或./ls 由 alias 找到该指令来执行 由 bash 内置的( builtin)指令来执行. 通过 PATH 这个变量的顺序搜寻到的第一个指令来执行. 在某一步骤找到command name后就会停止查找, 并且尝试执行.
+因此, 如果一个command name不是一个可执行的路径, 也不是一个alias, 又不是一个builtin( 例如alias), 则shell会在搜环境变量$PATH中搜索该command name, 如果找到, 就执行; 找不到, 则报错&amp;quot;command not found&amp;quot;.
+由于PATH 是个环境变量, 因此它在任意的子session中都有效. Command not found == not found in PATH." />
+<meta property="og:url" content="https://lyk-love.cn/Hugo-Blog/posts/shell-script-searching-path/" />
+<meta property="og:site_name" content="LYK-love" />
+
+  
+    <meta property="og:image" content="https://lyk-love.cn/images/favicon.ico">
+  
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2023-04-23 21:48:25 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+<style>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+
+
+     
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+
+    #search-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font: font: inherit;
+        font-size: 130%;
+        background: inherit;
+        border: inherit;
+        color: inherit;
+    }
+
+
+</style>
+
+
+
+
+<style>
+    .back-to-top {
+        box-sizing: border-box;
+        border-radius: 8px;        
+        position: fixed;
+        right: 30px;
+        z-index: 1050;
+        padding: 0 6px;
+        width: initial;
+        background: #222;
+        font-size: 12px;
+        opacity: 0.6;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        transition-property: bottom;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0s;
+        bottom: -40px;
+    }
+
+    .back-top-active {
+        bottom: 30px;
+    }
+
+    @media (max-width: 767px) {
+
+        .back-to-top {
+            right: 10px;
+        }
+
+
+        .back-top-active {
+            bottom: 10px;
+        }
+    }
+</style>
+
+
+<script src="https://kit.fontawesome.com/36e579b0cd.js" crossorigin="anonymous"></script>
+
+<style>
+     
+    .post-toc {
+        position: absolute;
+        width: 200px;
+        margin-left: 780px;
+        padding: 10px;
+        word-wrap: break-word;
+        box-sizing: border-box;
+    .post-toc-title {
+        margin: 0;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+    .post-toc-content {
+    &.always-active ul {
+         display: block;
+     }
+    >nav>ul {
+        margin: 10px 0;
+    }
+    ul {
+        padding-left: 0;
+        list-style: none;
+    ul {
+        padding-left: 15px;
+        display: none;
+    }
+    .has-active > ul {
+        display: block;
+    }
+    }
+    }
+    a:hover {
+        color: #c05b4d;
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    a {
+        display: block;
+        line-height: 30px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -webkit-transition-duration: .2s;
+        transition-duration: .2s;
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform,-webkit-transform;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+    }
+    @media only screen and (max-width: 1224px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    LYK-love
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/Hugo-Blog/about">About</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/archive">Archive</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/tags">Tags</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/categories">Categories</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/research">Research</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/code">Code</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/Hugo-Blog/about" >About</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/archive" >Archive</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/tags" >Tags</a></li>
+        
+      
+        
+          <li><a href="/Hugo-Blog/categories" >Categories</a></li>
+        
+      
+      
+        <li>
+          <ul class="menu">
+            <li class="menu__trigger">Show more&nbsp;▾</li>
+            <li>
+              <ul class="menu__dropdown">
+                
+                  
+                    <li><a href="/Hugo-Blog/research" >Research</a></li>
+                  
+                
+                  
+                    <li><a href="/Hugo-Blog/code" >Code</a></li>
+                  
+                
+              </ul>
+            </li>
+          </ul>
+        </li>
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://lyk-love.cn/Hugo-Blog/posts/shell-script-searching-path/">Shell Script Searching Path</a>
+  </h1>
+  <div class="post-meta">
+    
+      <time class="post-date">
+        2023-04-23 ::
+        
+      </time>
+    
+    
+    
+  </div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://lyk-love.cn/Hugo-Blog/tags/shell/">shell</a>&nbsp;
+      
+      #<a href="https://lyk-love.cn/Hugo-Blog/tags/linux/">Linux</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+    <div class="table-of-contents">
+      <h2>
+        Contents
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#current-directory-in-path">Current directory in <code>PATH</code></a></li>
+    <li><a href="#command-names-with-slashes-avoid-path">Command names with slashes avoid <code>PATH</code></a></li>
+  </ul>
+</nav>
+    </div>
+  
+
+  <div class="post-content"><div>
+        <p>Outline:</p>
+<ul>
+<li>Shell Script Searching Path</li>
+<li>Append path to <code>PATH</code></li>
+<li>Bad Practices</li>
+</ul>
+<h1 id="哈哈">哈哈<a href="#哈哈" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>我是陆昱宽</p>
+<p>他是加兰</p>
+<h1 id="shell-script-searching-path">Shell Script Searching Path<a href="#shell-script-searching-path" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Shell will <strong>find and execute</strong> command. The searching sequence of command name is:</p>
+<ol>
+<li>以相对/绝对路径执行指令，例如<code>/bin/ls </code>或<code>./ls </code></li>
+<li>由 <code>alias</code> 找到该指令来执行</li>
+<li>由 bash 内置的( builtin)指令来执行.</li>
+<li>通过 <code>PATH</code> 这个变量的顺序搜寻到的第一个指令来执行.</li>
+</ol>
+<p>在某一步骤找到command name后就会停止查找, 并且尝试执行.</p>
+<p>因此, 如果一个command name不是一个可执行的路径, 也不是一个alias, 又不是一个builtin( 例如<code>alias</code>), 则shell会在搜环境变量<code>$PATH中</code>搜索该command name, 如果找到, 就执行; 找不到, 则报错&quot;command not found&quot;.</p>
+<ul>
+<li>由于<code>PATH</code> 是个环境变量, 因此它在任意的子session中都有效.</li>
+<li>Command not found == not found in <code>PATH</code>. 这只是意味着在<code>PATH</code>中找不到该command name. 可以将该command的路径添加到<code>PATH</code>来让shell能搜索到它.</li>
+<li>可以看到, 如果一个command name是路径, 那么在step1就找到了, 不会尝试后面的步骤. <strong>如果一个command name带有slash( <code>/</code> ), 则会被视作路径名.</strong></li>
+</ul>
+<h1 id="append-path-to-path">Append path to <code>PATH</code><a href="#append-path-to-path" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>将命令的路径加入环境变量<code>PATH</code>的方法:</p>
+<p>声明环境变量<code>PATH</code>, 值为之前的<code>PATH</code>的值(采用<code>$</code>进行赋值),  再append 一个<code>:</code>, 因为环境变量之间通过冒号隔开, 再append要添加的路径, 这里是<code>/home/to/operation_tools</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$PATH:/home/to/operation_tools
+</span></span></code></pre></div><h1 id="bad-practices">Bad Practices<a href="#bad-practices" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>以下是一些错误的对<code>PATH</code>进行设置的例子.</p>
+<h2 id="current-directory-in-path">Current directory in <code>PATH</code><a href="#current-directory-in-path" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p><strong>A leading or trailing colon in <code>PATH</code>, or two adjacent colons (<code>::</code>), indicate that the <em>current directory</em> is one of the directorie</strong>s that the shell should try when looking for executable command names. This is a security risk and you must not do it:</p>
+<pre tabindex="0"><code>$ echo &#34;$PATH&#34;
+:/bin/:/usr/bin                          # EXTREME SECURITY RISK!
+
+$ echo &#34;$PATH&#34;
+/bin/::/usr/bin                          # MODERATE SECURITY RISK!
+
+$ echo &#34;$PATH&#34;
+/bin/:/usr/bin:                          # SECURITY RISK!
+</code></pre><p><strong>Do not put the current directory (or any relative path directory) in <code>PATH</code> – it is a security risk.</strong> You might accidentally execute a malicious program in the current directory.</p>
+<blockquote>
+<p>For example: If you put the current directory at the start of your <code>PATH</code>, e.g. <code>PATH=:/bin:/usr/bin</code>, then when you type <code>ls</code> the first program that is tried is <code>./ls</code> (the program named <code>ls</code> in the current directory) which might be a malicious program.</p>
+</blockquote>
+<h2 id="command-names-with-slashes-avoid-path">Command names with slashes avoid <code>PATH</code><a href="#command-names-with-slashes-avoid-path" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="https://lyk-love.cn/Hugo-Blog/posts/first/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Back Training</span>
+            </a>
+        </span>
+        
+        
+        <span class="button next">
+            <a href="https://lyk-love.cn/Hugo-Blog/posts/shell-script/">
+                <span class="button__text">Shell Script</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2023 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/Hugo-Blog/bundle.min.js"></script>
+
+
+
+<a id="search-btn" style="display: inline-block;" href="javascript:void(0);">
+  <span class="icon-search">Search</span>
+</a>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+  
+  
+  
+  var search_page_relative_url = "/search"
+  
+  
+  
+  document.addEventListener('keydown', function(event) {
+
+    
+    if (event.altKey && event.which === 191) {
+      
+      
+      navToSearchPage(event)
+    }
+
+    
+    if (event.keyCode == 27) {
+      navToHomePage()
+    }
+  });
+
+
+  document.querySelector("#search-btn").onclick = function(e) {
+    e.stopPropagation();
+    navToSearchPage()
+  }
+
+
+  function navToHomePage() {
+    window.location.href = "/"
+  }
+
+  function navToSearchPage() {
+    window.location.href = search_page_relative_url
+    
+    
+    
+  }
+</script>
+
+
+
+<div class="footer-box">
+  
+  <div class="back-to-top" id="back_to_top">
+    
+    
+    
+    <span><i class="fas fa-arrow-up"></i></span> 
+    
+    <span class="scrollpercent">
+            <span id="back_to_top_text">0</span>%
+         </span>
+  </div>
+</div>
+<script>
+  let sideBarOpen = 'sidebar-open';
+  let body = document.body;
+  let back2Top = document.querySelector('#back_to_top'),
+          back2TopText = document.querySelector('#back_to_top_text'),
+          drawerBox = document.querySelector('#drawer_box'),
+          rightSideBar = document.querySelector('.sidebar'),
+          viewport = document.querySelector('body');
+
+  function scrollAnimation(currentY, targetY) {
+
+    let needScrollTop = targetY - currentY
+    let _currentY = currentY
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10)
+      _currentY += dist
+      window.scrollTo(_currentY, currentY)
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY)
+      } else {
+        window.scrollTo(_currentY, targetY)
+      }
+    }, 1)
+  }
+
+  back2Top.addEventListener("click", function (e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+
+  window.addEventListener('scroll', function (e) {
+    let percent = document.scrollingElement.scrollTop / (document.scrollingElement.scrollHeight - document.scrollingElement.clientHeight) * 100;
+    if (percent > 1 && !back2Top.classList.contains('back-top-active')) {
+      back2Top.classList.add('back-top-active');
+    }
+    if (percent == 0) {
+      back2Top.classList.remove('back-top-active');
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
+  let hasCacu = false;
+  window.onresize = function () {
+    calcuHeight();
+  }
+</script>
+
+
+  
+</div>
+
+
+</body>
+</html>

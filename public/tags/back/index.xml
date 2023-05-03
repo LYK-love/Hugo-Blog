@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Back on LYK-love</title>
+    <link>https://lyk-love.cn/Hugo-Blog/tags/back/</link>
+    <description>Recent content in Back on LYK-love</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 May 2023 23:18:36 +0800</lastBuildDate><atom:link href="https://lyk-love.cn/Hugo-Blog/tags/back/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Back Training</title>
+      <link>https://lyk-love.cn/Hugo-Blog/posts/first/</link>
+      <pubDate>Mon, 01 May 2023 23:18:36 +0800</pubDate>
+      
+      <guid>https://lyk-love.cn/Hugo-Blog/posts/first/</guid>
+      <description>&lt;p&gt;Outline:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;My Training Plan&lt;/li&gt;
+&lt;li&gt;Pull Down&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <content>&lt;p&gt;Outline:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;My Training Plan&lt;/li&gt;
+&lt;li&gt;Pull Down&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;site.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Via the following commands you can install our page &lt;a href=&#34;https://github.com/command-line-interface-pages/v2-tooling/tree/main/clip-view&#34;&gt;render&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;BASHInstallation commands&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;temp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;mktemp&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget -O &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$temp&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; https://raw.githubusercontent.com/command-line-interface-pages/v2-tooling/main/clip-view/makefile
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;make -f &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$temp&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; remote-install
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;s&lt;/p&gt;
+&lt;p&gt;To verify whether if successfully installed to &lt;code&gt;/home/$USER/.local/bin&lt;/code&gt; type &lt;code&gt;clip-view --version&lt;/code&gt;. To view &lt;code&gt;cat&lt;/code&gt; page just type &lt;code&gt;clip-view cat&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note for programmers: installation also can be done via cloning &lt;a href=&#34;https://github.com/command-line-interface-pages/v2-tooling&#34;&gt;tools&lt;/a&gt; repo, moving to &lt;code&gt;clip-view&lt;/code&gt; directory and issuing &lt;code&gt;make install&lt;/code&gt; command.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;uninstallation-httplocalhost60616sitegithubioaboutuninstallation-&#34;&gt;Uninstallation 😞&lt;a href=&#34;http://localhost:60616/site.github.io/about/#uninstallation-&#34;&gt;⌗&lt;/a&gt;&lt;/h2&gt;
+&lt;h1 id=&#34;my-training-plan&#34;&gt;My Training Plan&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyk-love.cn/2023/04/23/Pull-Up&#34;&gt;Pull Up&lt;/a&gt;. 最有价值的练背动作&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyk-love.cn/2023/04/23/Barbell-Row/&#34;&gt;Barbell Row&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Pull Down. Pull up的低端版本.&lt;/li&gt;
+&lt;li&gt;Seated Cable Row&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其余动作效果一般. 事实上, 以上四个动作也是Jeff的背部训练动作梯度排行中最靠前的.&lt;/p&gt;
+&lt;h1 id=&#34;pull-down&#34;&gt;Pull Down&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.bilibili.com/video/BV1k441117Sr/?share_source=copy_web&amp;amp;vd_source=9bb7bae2f9b5b41ed3bf1d8b955097d4&#34;&gt;Jeff高位下拉&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在最低点拉到下巴之下.&lt;/p&gt;
+&lt;h1 id=&#34;seated-cable-row&#34;&gt;Seated Cable Row&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;伸直时: 胸往前挺, 肩胛下沉, 把绳索拉到下腹部:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://seec2-lyk.oss-cn-shanghai.aliyuncs.com/Hexo/Bodybuilding/Push%20Up/Standard%20Push%20Up%20shoulder.png&#34; alt=&#34;Standard Push Up shoulder&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;拉动时: 保持胸和肩背不变, 要让肘部超越后背&lt;/p&gt;
+&lt;p&gt;![Seated Cable Row2](/Users/lyk/Pictures/HexoPics/BodyBuilding/Back Training/Seated Cable Row2.png)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+    </item>
+    
+  </channel>
+</rss>
